@@ -4,7 +4,10 @@ irrGameEngine is a game engine as it sounds, C++ library intend to be used in pr
 Features:
 
   Easy and overadable RigidBody handling
+  
   Easy and overadable SoftBody handling
+  
   Easy and overadable RaycastVehicle handling
+  
   Works on all platforms, tested on Windows 7
   
