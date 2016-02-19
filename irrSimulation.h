@@ -12,6 +12,7 @@
     #ifndef _IRR_STATIC_LIB_
         #define _IRR_STATIC_LIB_
     #endif // _IRR_STATIC_LIB_
+    //#define DEBUG_CONFIG
 
     #include <irr/irrlicht.h>
     #include "btBulletCollisionCommon.h"
@@ -47,5 +48,8 @@
 
     //#include "BulletSoftBody/btSoftBody.h"
     #include "IrrDebugDraw.h"
+    #ifdef DEBUG_CONFIG
+        #include "chrono-d.h"
+    #endif
 
 #endif // IRRSIMULATION_H_INCLUDED

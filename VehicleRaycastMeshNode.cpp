@@ -29,6 +29,9 @@ bool VehicleRaycastMeshNode::init(const vector3df& position,const vector3df& rot
                               const core::stringw& wheelTextureFile,
                               const core::stringw& chassisTextureFile)
 {
+    #ifdef DEBUG_CONFIG
+    cr = new chrono();
+    #endif // DEBUG_CONFIG
     //setchassis
     setChassisShape(position,rotation,chassisTextureFile);
     //setWheekShape
@@ -266,6 +269,9 @@ VehicleRaycastMeshNode::~VehicleRaycastMeshNode()
         wl[i]->remove();
     }
     chassis->remove();
+    #ifdef DEBUG_CONFIG
+        delete cr;
+    #endif // DEBUG_CONFIG
 }
 //protected part
 void VehicleRaycastMeshNode::setChassisShape(const vector3df& chassisPosition,
@@ -422,7 +428,9 @@ void VehicleRaycastMeshNode::updateVehicleTrans()
     //btVector3 wheelColor(1,0,0);
 //    btVector3	worldBoundsMin,worldBoundsMax;
 //    m_world->getBroadphase()->getBroadphaseAabb(worldBoundsMin,worldBoundsMax);
-
+    #ifdef DEBUG_CONFIG
+        cr->reset();
+    #endif // DEBUG_CONFIG
     irr::core::matrix4 mat;
     irr::f32 * ptr;
     ptr = mat.pointer();
@@ -449,6 +457,9 @@ void VehicleRaycastMeshNode::updateVehicleTrans()
         //glDisable(GL_CULL_FACE);
         updateChassisTrans();
     }
+    #ifdef DEBUG_CONFIG
+        cr->show(stringc(L"updateVehicleTrans time: ").c_str());
+    #endif // DEBUG_CONFIG
 }
 
 void VehicleRaycastMeshNode::updateSteeringClamp()
