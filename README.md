@@ -7,6 +7,8 @@ irrGameEngine is a C++ library intended to be used to make professional games, i
   <ul>
     <li>RigidBody and SoftBody handling</li>
     <li>Easy and customizable RaycastVehicle</li>
+    <li>Support OGG audio format</li>
+    <li>Support Socket, HTTP and FTP web requests, TCP and UDP protocols</li>
     <li>Works on all platforms, tested on Windows 7</li>
   </ul>
 
