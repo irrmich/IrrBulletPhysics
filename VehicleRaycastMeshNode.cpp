@@ -464,6 +464,7 @@ void VehicleRaycastMeshNode::updateVehicleTrans()
 
 void VehicleRaycastMeshNode::updateSteeringClamp()
 {
+    //Cause of this line, the car can turn harder its front wheel at high speed (optional function thought)
     steeringClamp=30.f/(120+3*abs(m_vehicle->getCurrentSpeedKmHour()));
 }
 
