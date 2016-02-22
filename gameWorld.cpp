@@ -56,7 +56,7 @@ void gameWorld::runPhysics(bool fixed,float fps,int maxsubSteps)
 //    if(m_checkContactManifolds)
 //        this->onCollision();
 #ifdef USE_MULTI_BODY_WORLD
-    this->updateMultiBodies();
+    updateMultiBodies();
 #endif // USE_MULTI_BODY_WORLD
 }
 
@@ -140,14 +140,14 @@ bool gameWorld::init(E_DRIVER_TYPE driverType,u32 windowWidth,u32 windowHeight,u
 
     m_debDraw = new irrDebugDraw(m_drv,m_smgr);
 
-    this->setDefaultCamera();
-    this->setSkyBoxandDom(mediaDir+"irrlicht2_up.jpg",
+    setDefaultCamera();
+    setSkyBoxandDom(mediaDir+"irrlicht2_up.jpg",
                           mediaDir+"irrlicht2_dn.jpg",
                           mediaDir+"irrlicht2_lf.jpg",
                           mediaDir+"irrlicht2_rt.jpg",
                           mediaDir+"irrlicht2_ft.jpg",
                           mediaDir+"irrlicht2_bk.jpg");
-    this->initPhysics();
+    initPhysics();
     return true;
 }
 
@@ -183,10 +183,10 @@ bool gameWorld::runGameLoop()
 {
     while(m_dev->run())
     {
-        this->runPhysics(true,60,1);
-        this->updateVehicles();
-        this->updateSoftBodies();
-        this->gameLoop();
+        runPhysics(true,60,1);
+        updateVehicles();
+        updateSoftBodies();
+        gameLoop();
     }
 }
 
@@ -230,7 +230,7 @@ bool gameWorld::OnEvent(const SEvent &event)
 
 gameWorld::~gameWorld()
 {
-    this->drop();
+    drop();
 //    if(m_univ)delete m_univ;
     if(m_debDraw)delete m_debDraw;
     if(m_dev)m_dev->drop();
