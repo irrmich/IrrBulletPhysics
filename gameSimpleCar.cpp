@@ -24,6 +24,7 @@ gameSimpleCar::gameSimpleCar(btDynamicsWorld* world,ISceneManager* smgr,
 VehicleRaycastMeshNode(world,smgr,position,rotation,wheelMeshFile,wheelTextureFile,chassisTextureFile)
 {
 //    m_univ->addVehicleRaycastMeshNode(m_id,position,rotation,static_cast<VehicleRaycastMeshNode*>(this));
+      init(position,rotation,wheelMeshFile,wheelTextureFile,chassisTextureFile);
 }
 
 gameSimpleCar::~gameSimpleCar()
