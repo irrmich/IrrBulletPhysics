@@ -16,7 +16,6 @@ VehicleRaycastMeshNode::VehicleRaycastMeshNode(btDynamicsWorld* world,ISceneMana
 {
     m_world = world;
     m_smgr = smgr;
-    m_isReady = init(position,rotation,wheelMeshFile,wheelTextureFile,chassisTextureFile);
 }
 
 bool VehicleRaycastMeshNode::isReady() const
