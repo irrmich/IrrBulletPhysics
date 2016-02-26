@@ -52,7 +52,7 @@ protected:
     #endif // DEBUG_CONFIG
     irr::core::matrix4 matChassisChild, matChassis;
 
-    ISceneNode* wl[4];
+    std::vector<ISceneNode*> wl;
     ISceneNode* chassis = 0;
 
     bool m_isReady;
@@ -102,7 +102,7 @@ protected:
     float connectionHeight = 1.2f;//(michael) augmente ou diminue la longueur de l'amortisseur
     float suspensionRestLength = 0.7f; //(Michael) Apparement, ceci correspond à la longueur de l'amortisseur (defaut: 0.6)
     bool bRestoreSteering = false;
-private:
+
     btDynamicsWorld* m_world = 0;
     ISceneManager* m_smgr = 0;
 };

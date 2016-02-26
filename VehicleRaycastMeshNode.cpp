@@ -311,10 +311,10 @@ void VehicleRaycastMeshNode::setWheelShape(const core::stringw& wheelMeshFile,
     IMesh* wheelMesh = m_smgr->getMesh(wheelMeshFile);//m_smgr->getMesh("models/roue.obj");
     for(int u=0;u<4;u++)
     {
-        wl[u] = m_smgr->addMeshSceneNode(wheelMesh);//m_smgr->addSphereSceneNode(wheelRadius,32);
+        wl.push_back(m_smgr->addMeshSceneNode(wheelMesh));//m_smgr->addSphereSceneNode(wheelRadius,32);
         //wl[u]->setPosition(vector3df(0,wheelRadius,0));
-        wl[u]->setMaterialFlag(EMF_LIGHTING,useLight);
-        wl[u]->setMaterialTexture(0,m_smgr->getVideoDriver()->getTexture(wheelTextureFile));
+        wl[wl.size()-1]->setMaterialFlag(EMF_LIGHTING,useLight);
+        wl[wl.size()-1]->setMaterialTexture(0,m_smgr->getVideoDriver()->getTexture(wheelTextureFile));
         //wl[u]->setMaterialTexture(0,m_smgr->getVideoDriver()->getTexture("media/wheel.jpg"));
     }
 }
@@ -430,6 +430,7 @@ void VehicleRaycastMeshNode::updateVehicleTrans()
     #ifdef DEBUG_CONFIG
         cr->reset();
     #endif // DEBUG_CONFIG
+    if(!m_isReady)return;
     irr::core::matrix4 mat;
     irr::f32 * ptr;
     ptr = mat.pointer();
@@ -463,7 +464,6 @@ void VehicleRaycastMeshNode::updateVehicleTrans()
 
 void VehicleRaycastMeshNode::updateSteeringClamp()
 {
-    //Cause of this line, the car can turn harder its front wheel at high speed (optional function thought)
     steeringClamp=30.f/(120+3*abs(m_vehicle->getCurrentSpeedKmHour()));
 }
 

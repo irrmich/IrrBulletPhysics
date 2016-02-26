@@ -22,6 +22,15 @@ namespace gameEngine
                               const core::stringw& wheelMeshFile,
                               const core::stringw& wheelTextureFile,
                               const core::stringw& chassisTextureFile);
+        bool init(const vector3df& position,const vector3df& rotation,
+                              const core::stringw& wheelMeshFile,
+                              const core::stringw& wheelTextureFile,
+                              const core::stringw& chassisTextureFile);
+        void setWheelShape(const core::stringw& wheelMeshFile,
+                           const core::stringw& wheelTextureFile);
+        void setChassisShape(const vector3df& chassisPosition,
+                              const vector3df& chassisRotation,
+                              const core::stringw& chassisTextureFile);
         ~gameSimpleCar();
     protected:
         int m_id;
