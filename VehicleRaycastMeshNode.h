@@ -19,32 +19,32 @@ public:
                               const core::stringw& wheelMeshFile="models/roue.obj",
                               const core::stringw& wheelTextureFile="media/wheel.jpg",
                               const core::stringw& chassisTextureFile="media/fl.jpg");
-    vector3df getPosition();
-    int resetVehicle();
-    int restoreVehicleSteering();
-    void stepSimulation();
-    void moveVehicle();
-    bool setCameraFollower(ICameraSceneNode* cam);
-    bool isReady() const;
-    bool OnEvent(const SEvent &event);
+    virtual vector3df getPosition();
+    virtual int resetVehicle();
+    virtual int restoreVehicleSteering();
+    virtual void stepSimulation();
+    virtual void moveVehicle();
+    virtual bool setCameraFollower(ICameraSceneNode* cam);
+    virtual bool isReady() const;
+    virtual bool OnEvent(const SEvent &event);
     ~VehicleRaycastMeshNode();
 
 protected:
-    bool init(const vector3df& position,
+    virtual bool init(const vector3df& position,
               const vector3df& rotation,
               const core::stringw& wheelMeshFile,
               const core::stringw& wheelTextureFile,
               const core::stringw& chassisTextureFile);
-    void setChassisShape(const vector3df& chassisPosition=vector3df(0,0,0),
+    virtual void setChassisShape(const vector3df& chassisPosition=vector3df(0,0,0),
                          const vector3df& chassisRotation=vector3df(0,0,0),
                         const core::stringw& chassisTextureFile="");
-    void setWheelShape(const core::stringw& wheelMeshFile,
+    virtual void setWheelShape(const core::stringw& wheelMeshFile,
                         const core::stringw& wheelTextureFile);
-    btRigidBody* localCreateRigidBody(float mass, const btTransform& startTransform,btCollisionShape* shape);
-    int mountVehiclePieces();
-    void updateChassisTrans();
-    void updateVehicleTrans();
-    void updateSteeringClamp();
+    virtual btRigidBody* localCreateRigidBody(float mass, const btTransform& startTransform,btCollisionShape* shape);
+    virtual int mountVehiclePieces();
+    virtual void updateChassisTrans();
+    virtual void updateVehicleTrans();
+    virtual void updateSteeringClamp();
 //    void drop();
 protected:
     #ifdef DEBUG_CONFIG
@@ -84,23 +84,23 @@ protected:
     float	maxEngineForce = 1000.f;//1000.f;//this should be engine/velocity dependent
     float	maxBreakingForce = 100.f;
 
-    float   gBreakingIncrement = 20.f; //(ajouté par michael) Incrémenter le niveau de freinage
+    float   gBreakingIncrement = 20.f; //(ajoutÃ© par michael) IncrÃ©menter le niveau de freinage
     float	gVehicleSteering = 0.f;
-    float	steeringIncrement = 0.04f;//(michael) par defaut 0.04f; Ceci améliore ou détériore la réactivité du volon de l'auto
+    float	steeringIncrement = 0.04f;//(michael) par defaut 0.04f; Ceci amÃ©liore ou dÃ©tÃ©riore la rÃ©activitÃ© du volon de l'auto
     float	steeringClamp = 0.3f;
     float	wheelRadius = 0.5f;	//(michael) rayon d'une roue
-    float	wheelWidth = 0.2f; //(michael) épaisseur d'une roue
+    float	wheelWidth = 0.2f; //(michael) Ã©paisseur d'une roue
     float	wheelFriction = 1000;//BT_LARGE_FLOAT;
-    float	suspensionStiffness = 20.f;//(michael) raideur, souplesse ou flexibilité,
-                                        // plus le raideur est élevé plus l'état de l'amortisseur est dur à changer
-    float	suspensionDamping = 10.3f;//Coefficient d'amortissement (plus c'est élevé, plus l'amortisseur met du temps à osciller)
+    float	suspensionStiffness = 20.f;//(michael) raideur, souplesse ou flexibilitÃ©,
+                                        // plus le raideur est Ã©levÃ© plus l'Ã©tat de l'amortisseur est dur Ã  changer
+    float	suspensionDamping = 10.3f;//Coefficient d'amortissement (plus c'est Ã©levÃ©, plus l'amortisseur met du temps Ã  osciller)
     float	suspensionCompression = 4.4f;
-    float	rollInfluence = 0.4f;/*1.0f;(michael) Quand cette valeur est élevée, un clic sur tourner à droite ou à gauche fait
+    float	rollInfluence = 0.4f;/*1.0f;(michael) Quand cette valeur est Ã©levÃ©e, un clic sur tourner Ã  droite ou Ã  gauche fait
                                 figer le mobile dans cette direction pendant un temps de plus en plus longtemps
-                                On remarque aussi que plus la valeur est élevée, le coin d'un des roues devant
-                                tend à s'incliner devant l'autre*/
+                                On remarque aussi que plus la valeur est Ã©levÃ©e, le coin d'un des roues devant
+                                tend Ã  s'incliner devant l'autre*/
     float connectionHeight = 1.2f;//(michael) augmente ou diminue la longueur de l'amortisseur
-    float suspensionRestLength = 0.7f; //(Michael) Apparement, ceci correspond à la longueur de l'amortisseur (defaut: 0.6)
+    float suspensionRestLength = 0.7f; //(Michael) Apparement, ceci correspond Ã  la longueur de l'amortisseur (defaut: 0.6)
     bool bRestoreSteering = false;
 
     btDynamicsWorld* m_world = 0;
